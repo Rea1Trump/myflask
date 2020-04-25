@@ -5,21 +5,20 @@ from App.models.models import db, User
 signin = Blueprint('signin', __name__)
 
 
-@signin.route('/', methods=['GET'])
+@signin.route('/')
 def index():
-    return render_template('index.html')
-    #
+
+    return render_template('index.html', title='Index')
 
 
 @signin.route('/signin/', methods=['POST', 'GET'])
 def signinpage():
-    user = User()
     if request.method == 'POST':
-        user.username = request.form['username']
-        user.password = request.form['password']
-        db.session.add(user)
-        db.session.commit()
-        return 'ok'
+        user = request.form
+
+        if User.query.filter(user):
+            return '登陆成功'
+        else:
+            return 'bad'
     else:
-        db.create_all()
-        return render_template('signin.html')
+        return render_template('signin.html', title='Sign in')

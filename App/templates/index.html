@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
-<title>Home page</title>
-<body>
-<a href="http://127.0.0.1:5000/signin">Sigin your account</a><br>
-<a href="http://127.0.0.1:5000/signup">Sinup for a new account</a>
+    <head>
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>welcome</title>
+        {% endif %}
+    </head>
 
+    <body>
+        <div>
+            Goto:
 
-</body>
+                <a href="/"><input type="button" value="Index"></a>
+                <a href="/signin"><input type="button" value="Signin"></a>
+                <a href="/signup"><input type="button" value="Signup"></a>
+        </div>
+    <hr>
+        {% block content %}{% endblock %}
+    </body>
 </html>
